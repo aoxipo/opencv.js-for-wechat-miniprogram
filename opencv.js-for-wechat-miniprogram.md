@@ -264,7 +264,7 @@ Module.onRuntimeInitialized();
 
     we need change a lot , I compared the differences before and after the changes (see  [wasm.js](https://github.com/leo9960/opencv.js-wechat/blob/master/demo/miniprogram/utils/wasm.js)  is the file modified by the author, and here is the origin file [opencv.js](https://github.com/leo9960/opencv.js-wechat/blob/master/demo/server/opencv.js)  (4.3.0) )
 
-    at first time i got some error ,when i just change the opencv.wasm( opencv version == 4.3.0) **(how to build [here](#how_to_build_with_wasm)) just need change one code when you use commond build_wasm )** and then i realize it may be due to different emscripten versions the build file also were different, so here is my emscripten version 
+    at first time i got some error ,when i just change the opencv.wasm( opencv version == 4.3.0) **(how to build [here](#how_to_build_with_wasm)) just need change one code when you use commond build_wasm )** and then i realize it may be due to different emscripten versions the build file also were different,which means I need to write a load file ([wasm4.js](https://github.com/aoxipo/opencv.js-for-wechat-miniprogram/blob/main/compare/wasm4.0.js))suitable for my own version,so here is my emscripten version 
 
     ```shell
     iMac:emsdk User$ emcc -v
