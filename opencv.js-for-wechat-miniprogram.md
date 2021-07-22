@@ -295,7 +295,7 @@ Module.onRuntimeInitialized();
 
 5. ##### run opencv.js under SE5 environment
 
-    if you success build opencv.wasm and download opencv.js-wechat program run opencv.js-wechat/miniprogram/ with WeChat Developer Tools, and add file wasm4.js (If you don't have a comparison to modify the file, here is my modified file compare/wasm4.0.js and make sure the version is consistent ) 
+    if you success build opencv.wasm and download opencv.js-wechat program run opencv.js-wechat/miniprogram/ with WeChat Developer Tools, and add file wasm4.js (If you don't have a comparison to modify the file, **here is my modified file compare/wasm4.0.js and make sure the version is consistent** ) 
 
   
 
