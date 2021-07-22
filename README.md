@@ -6,5 +6,6 @@ opencv.js compile for wechat miniprogram
 latest developments:<br/>
 SE6 to SE5 have a problem ,it's can work under SE6 and can't work under SE5 (solved) 
 <br/>
-there's problem for overloadtable under SE6 standard and now we can use cv function only by full params
-it's work in SE6 and SE5 but incomplete
+there's problem for overloadtable under SE6 standard and now we can use cv function only by full params （still problem）
+<br/>
+it's work in SE6 and SE5 but incomplete 
