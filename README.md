@@ -329,8 +329,7 @@ Module.onRuntimeInitialized();
 ##### 2. Webassembly is not define --- some basic compilers for WeChat applets not  support Webassembly
 
 ##### 3.  In order to minimize the package size , if your want use function like imread / imwrite / or other function can be  easily reproducible , your can add code in line wasm4.js:5737 like this
-##### 4. miniprogram wechat not support webassemly after 8.0.0, and replace it by WXWebAssembly
-##### 5. how to use WXWebAssembly under Plug-in development pattern ,still don't konw , can't found the file under plugin path
+
 
 ```js
 Module["imread"] = function (imageSource, callback) {
@@ -349,4 +348,8 @@ Module["imread"] = function (imageSource, callback) {
     }
 };
 ```
+
+##### 4. miniprogram wechat not support webassemly after 8.0.0, and replace it by WXWebAssembly
+##### 5. how to use WXWebAssembly under Plug-in development pattern ,still don't konw , can't found the file under plugin path
+
 
