@@ -283,11 +283,11 @@ Module.onRuntimeInitialized();
     iMac:opencv User$ cd ./js
     iMac:opencv User$ vim CMakeLists.txt
     
-    Comment out the line 73 
+    Comment out the line 73 and add 
     
     set(EMSCRIPTEN_LINK_FLAGS "${EMSCRIPTEN_LINK_FLAGS} --memory-init-file 0 -s TOTAL_MEMORY=128MB -s WASM_MEM_MAX=1GB -s ALLOW_MEMORY_GROWTH=1")
-    #set(EMSCRIPTEN_LINK_FLAGS "${EMSCRIPTEN_LINK_FLAGS} -s MODULARIZE=1 -s SINGLE_FILE=1") #here 
-    set(EMSCRIPTEN_LINK_FLAGS "${EMSCRIPTEN_LINK_FLAGS} -s MODULARIZE=1 -s")
+    #set(EMSCRIPTEN_LINK_FLAGS "${EMSCRIPTEN_LINK_FLAGS} -s MODULARIZE=1 -s SINGLE_FILE=1") # Comment out here 
+    set(EMSCRIPTEN_LINK_FLAGS "${EMSCRIPTEN_LINK_FLAGS} -s MODULARIZE=1 -s") # add this
     set(EMSCRIPTEN_LINK_FLAGS "${EMSCRIPTEN_LINK_FLAGS} -s EXPORT_NAME=\"'cv'\" -s DEMANGLE_SUPPORT=1")
     ```
 
@@ -297,7 +297,26 @@ Module.onRuntimeInitialized();
 
     if you success build opencv.wasm and download opencv.js-wechat program run opencv.js-wechat/miniprogram/ with WeChat Developer Tools, and add file wasm4.js (If you don't have a comparison to modify the file, **here is my modified file compare/wasm4.0.js and make sure the version is consistent** ) 
 
-  
+ 
+6. ##### WebAssembly not support in miniprogram replace it by WXWebAssembly
+    miniprogram wechat not support webassemly after 8.0.0 and repleace it by WXWebAssembly like this
+    
+    ```
+      WXWebAssembly.instantiate("/utils/opencv314dev.wasm", info).then(receiveInstantiatedSource);
+      The first parameter is Package path to .wasm or .br file, and info  is the environment. see code line 461 info = { "env":xxx,"wasi_snapshot_preview1":xxx, }
+    ```
+    
+    and WXWebAssembly also support brotli file(it's A compression algorithm similar to ZIP and RAR,my test opencv.wasm after the compression only 366KB)
+    
+    ```
+    #how to build the br file by brotli
+    brew install brotli
+    #use it like tar 
+    brotli -j -f -q 11 opencv.wasm #(it will cost a lot of time just wait )
+    # and you will get the file and  format like this opencv.wasm.br ,use it in wasm.js like this  
+    WXWebAssembly.instantiate("/utils/opencv314dev.wasm.br", info).then(receiveInstantiatedSource);
+    ```
+    
 
  
 
@@ -310,6 +329,8 @@ Module.onRuntimeInitialized();
 ##### 2. Webassembly is not define --- some basic compilers for WeChat applets not  support Webassembly
 
 ##### 3.  In order to minimize the package size , if your want use function like imread / imwrite / or other function can be  easily reproducible , your can add code in line wasm4.js:5737 like this
+##### 4. miniprogram wechat not support webassemly after 8.0.0, and replace it by WXWebAssembly
+##### 5. how to use WXWebAssembly under Plug-in development pattern ,still don't konw , can't found the file under plugin path
 
 ```js
 Module["imread"] = function (imageSource, callback) {
