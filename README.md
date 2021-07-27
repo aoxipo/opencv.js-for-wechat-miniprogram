@@ -351,8 +351,7 @@ Module["imread"] = function (imageSource, callback) {
 
 ##### 4. miniprogram wechat not support webassemly after 8.0.0, and replace it by WXWebAssembly
 ##### 5. how to use WXWebAssembly under Plug-in development pattern ,still don't konw , can't found the file under plugin path
-##### 6. FrameworkError Invalid opcode(enable with --experimental-wasm-threads)@+11593
+##### 6. FrameworkError Invalid opcode(enable with --experimental-wasm-threads)@+11593 
 </br>
-[solution](https://developers.weixin.qq.com/community/develop/doc/000e2c019f8a003d5dfbb54c251c00)
-
+check your version ,3.4.14 opencv will have this problem ,4.3.0 version didn't!!!!!
 
